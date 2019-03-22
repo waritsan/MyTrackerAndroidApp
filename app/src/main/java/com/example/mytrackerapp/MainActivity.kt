@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
+import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -32,9 +33,14 @@ class MainActivity : AppCompatActivity() {
                 // Send request
                 val queue = Volley.newRequestQueue(this)
                 val url = "https://dweet.io/dweet/for/square-trouble?latitude=${latitude}&longitude=${longitude}"
-                val stringRequest = StringRequest(Request.Method.GET, url, Response.Listener<String> {
+                val stringRequest = StringRequest(Request.Method.GET, url,
+                    Response.Listener<String> {
                         response -> Log.e("RESPONSE", "Response is: ${response.toString()}")
-                }, Response.ErrorListener { Log.e("ERROR", "HTTP request error") })
+                        val textView = findViewById<TextView>(R.id.textView)
+                        textView.setText(location.toString())
+                    }, Response.ErrorListener {
+                        Log.e("ERROR", "HTTP request error")
+                    })
                 queue.add(stringRequest)
             } else {
                 Log.e("ERROR", "Cannot get location!")
