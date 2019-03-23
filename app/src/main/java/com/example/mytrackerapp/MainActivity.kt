@@ -29,15 +29,15 @@ class MainActivity : AppCompatActivity() {
                 val latitude = location.latitude
                 val longitude = location.longitude
                 Log.e("LOCATION", location.toString())
-                Log.e("LOCATION", "Latitude: ${latitude}, longitude: ${longitude}")
+                Log.e("LOCATION", "Latitude: $latitude, longitude: $longitude")
                 // Send request
                 val queue = Volley.newRequestQueue(this)
-                val url = "https://dweet.io/dweet/for/square-trouble?latitude=${latitude}&longitude=${longitude}"
+                val url = "https://dweet.io/dweet/for/square-trouble?latitude=$latitude&longitude=$longitude"
                 val stringRequest = StringRequest(Request.Method.GET, url,
                     Response.Listener<String> {
                         response -> Log.e("RESPONSE", "Response is: ${response.toString()}")
                         val textView = findViewById<TextView>(R.id.textView)
-                        textView.setText(location.toString())
+                        textView.text = location.toString()
                     }, Response.ErrorListener {
                         Log.e("ERROR", "HTTP request error")
                     })
