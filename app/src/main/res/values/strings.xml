@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Tracker App</string>
+    <string name="location_textview">0</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
